@@ -1,0 +1,19 @@
+npm install -g @devcontainers/cli
+
+docker volume create --driver local -o o=bind -o type=none \
+  -o device="/home/developer/dev/zmk-config/" zmk-config
+zmk-config
+
+docker volume create --driver local -o o=bind -o type=none   -o device="/home/developer/dev/zmk-config/" zmk-modules
+zmk-modules
+
+devcontainer up --workspace-folder "/home/developer/dev/zmk"
+
+docker ps
+
+docker exec -w /workspaces/zmk -it <container_id> /bin/bash
+
+west init -l app/
+west update
+
+west build -s app -d "/tmp/foo" -b "nice_nano_v2"  -- -DZMK_CONFIG=/workspaces/zmk-config -DSHIELD="corne_left" -DZMK_EXTRA_MODULES='/workspaces/zmk-config'
