@@ -16,15 +16,13 @@ docker exec -w /workspaces/zmk -it <container_id> /bin/bash
 west init -l app/
 west update
 
-rm -r build/left
-west build -s app -d "build/left" -b "nice_nano_v2" -- -DZMK_CONFIG=/workspaces/zmk-config -DSHIELD="corne_left nice_view_adapter nice_view" -DZMK_EXTRA_MODULES="/workspaces/zmk-config"
-cp build/left/zephyr/zmk.uf2 /workspaces/zmk-config/zmk-left.uf2
+cd /workspaces
 
-rm -r build/right
-west build -s app -d "build/right" -b "nice_nano_v2" -- -DZMK_CONFIG=/workspaces/zmk-config -DSHIELD="corne_right nice_view_adapter nice_view" -DZMK_EXTRA_MODULES="/workspaces/zmk-config"
-cp build/right/zephyr/zmk.uf2 /workspaces/zmk-config/zmk-right.uf2
+rm -r build && west build -s "zmk/app" -d "build/left" -b "nice_nano_v2" -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD="corne_left nice_view_adapter nice_view" -DZMK_EXTRA_MODULES="/workspaces/zmk-config" && west build -s "zmk/app" -d "build/right" -b "nice_nano_v2" -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD="corne_right nice_view_adapter nice_view" -DZMK_EXTRA_MODULES="/workspaces/zmk-config"
+
+cp build/left/zephyr/zmk.uf2 /workspaces/zmk-config/zmk-left.uf2 && cp build/right/zephyr/zmk.uf2 /workspaces/zmk-config/zmk-right.uf2
 
 sudo chown developer:developer zmk*.uf2
 
-cp zmk-left.uf2 /media/developer/NICENANO/
 cp zmk-right.uf2 /media/developer/NICENANO/
+cp zmk-left.uf2 /media/developer/NICENANO/
