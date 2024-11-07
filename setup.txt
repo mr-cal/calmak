@@ -16,4 +16,15 @@ docker exec -w /workspaces/zmk -it <container_id> /bin/bash
 west init -l app/
 west update
 
-west build -s app -d "/tmp/foo" -b "nice_nano_v2"  -- -DZMK_CONFIG=/workspaces/zmk-config -DSHIELD="corne_left" -DZMK_EXTRA_MODULES='/workspaces/zmk-config'
+rm -r build/left
+west build -s app -d "build/left" -b "nice_nano_v2" -- -DZMK_CONFIG=/workspaces/zmk-config -DSHIELD="corne_left nice_view_adapter nice_view" -DZMK_EXTRA_MODULES="/workspaces/zmk-config"
+cp build/left/zephyr/zmk.uf2 /workspaces/zmk-config/zmk-left.uf2
+
+rm -r build/right
+west build -s app -d "build/right" -b "nice_nano_v2" -- -DZMK_CONFIG=/workspaces/zmk-config -DSHIELD="corne_right nice_view_adapter nice_view" -DZMK_EXTRA_MODULES="/workspaces/zmk-config"
+cp build/right/zephyr/zmk.uf2 /workspaces/zmk-config/zmk-right.uf2
+
+sudo chown developer:developer zmk*.uf2
+
+cp zmk-left.uf2 /media/developer/NICENANO/
+cp zmk-right.uf2 /media/developer/NICENANO/
