@@ -1,1 +1,8 @@
 *.uf2
+.build
+.direnv
+.venv
+.west
+modules
+firmware
+zmk
