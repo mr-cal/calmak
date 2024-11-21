@@ -6,3 +6,5 @@
 modules
 firmware
 zmk
+zephyr
+zmk-helpers

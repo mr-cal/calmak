@@ -104,3 +104,11 @@ update:
 # upgrade zephyr-sdk and python dependencies
 upgrade-sdk:
     nix flake update --flake .
+
+# upgrade firmware for the left shield
+upgrade-left:
+    cp "{{ build }}/corne_left+nice_view_adapter+nice_view-nice_nano_v2/zephyr/zmk.uf2" /media/developer/NICENANO/
+
+# upgrade firmware for the right shield
+upgrade-right:
+    cp "{{ build }}/corne_right+nice_view_adapter+nice_view-nice_nano_v2/zephyr/zmk.uf2" /media/developer/NICENANO/
