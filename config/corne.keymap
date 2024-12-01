@@ -112,67 +112,14 @@ SIMPLE_MORPH(hypn_und, SFT, &kp MINUS, &kp UNDER)
     )
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
+MAKE_HRM(hmr_cm, &kp, &comma_morph, KEYS_L THUMBS)  // right hand - comma         + semicolon
+MAKE_HRM(hmr_dt, &kp, &dot_morph, KEYS_L THUMBS)    // right hand - period        + colon
+MAKE_HRM(hmr_qx, &kp, &dot_morph, KEYS_L THUMBS)    // right hand - question mark + exclamation point
 
 // HRM combo hack - workaround for lack of tap-only combos (ZMK issue #544)
 #define ZMK_COMBO_8(NAME, TAP, KEYPOS, LAYERS, COMBO_TERM, COMBO_IDLE, HOLD, SIDE) \
     MAKE_HRM(hm_combo_ ## NAME, &kp, TAP, SIDE THUMBS) \
     ZMK_COMBO_6(NAME, &hm_combo_ ## NAME HOLD 0, KEYPOS, LAYERS, COMBO_TERM, COMBO_IDLE)
-
-
-/* navigation 
- * ────────── */
-
-// long-tap action on hold, short-tap action on all interrupts
-//#define MT_CORE \
-//    flavor = "tap-preferred"; \
-//    tapping-term-ms = <220>; \
-//    quick-tap-ms = <220>; \
-//    hold-trigger-key-positions = <0>;
-
-//&mt { MT_CORE };
-//ZMK_HOLD_TAP(mt_home, bindings = <&masked_home>, <&kp>; MT_CORE)
-//ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
-
-//#define NAV_LEFT  &mt_home 0   LEFT    // tap: left  | long-tap: beginning of line
-//#define NAV_RIGHT &mt_end 0    RIGHT   // tap: right | long-tap: end       of line
-#define NAV_UP    &mt LC(HOME) UP      // tap: up    | long-tap: beginning of document
-#define NAV_DOWN  &mt LC(END)  DOWN    // tap: down  | long-tap: end       of document
-#define NAV_BSPC  &mt LC(BSPC) BSPC    // tap: bspc  | long-tap: backspace word
-#define NAV_DEL   &mt LC(DEL)  DEL     // tap: del   | long-tap: delete word
-
-// mask CTRL when holding left/right to avoid accidental jumps to beginning/end of document
-//#define MASK_MODS(NAME, MODS, BINDING) \
-//    ZMK_MOD_MORPH(NAME, \
-//        bindings = <BINDING>, <BINDING>; \
-//        mods = <MODS>; \
-//    )
-//MASK_MODS(masked_home, (MOD_LCTL), &kp HOME)
-//MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
-
-
-/* smart space
- * ─────────── */
-
-// tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
-ZMK_HOLD_TAP(lt_spc,
-    flavor = "balanced";
-    tapping-term-ms = <200>;
-    quick-tap-ms = <QUICK_TAP_MS>;
-    bindings = <&mo>, <&spc_morph>;
-)
-
-SIMPLE_MORPH(
-    spc_morph,
-    SFT,
-    &kp SPACE,
-    &dot_spc
-)
-
-ZMK_MACRO(dot_spc,
-    wait-ms = <0>;
-    tap-ms = <5>;
-    bindings = <&kp DOT &kp SPACE &sk LSHFT>;
-)
 
 
 /* smart shift
@@ -192,33 +139,31 @@ ZMK_MOD_MORPH(smart_shft,
  * ──────────── */
 
 ZMK_LAYER(base,
-// ╭───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────╮
-// │     q     │     w     │     f     │     p     │     b     │   │     j     │     l     │     u     │     y     │    '"     │
-      &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SQT
-// ├───────────┼───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┼───────────┤
-// │     a     │     r     │     s     │     t     │     g     │   │     m     │     n     │     e     │     i     │     o     │
-      &kp A       &kp R       &kp S       &kp T       &kp G           &kp M       &kp N       &kp E       &kp I       &kp O
-// ├───────────┼───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┼───────────┤
-// │     z     │     x     │     c     │     d     │     v     │   │     k     │     h     │    ,;     │    .:     │    ?!     │
-   &hml LCTRL Z &hml LSHFT X &hml LGUI C &hml LALT D  &kp V           &kp K       &kp H    &comma_morph &dot_morph    &qexcl
-//    &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H    &comma_morph &dot_morph    &qexcl
-// ╰───────────┴───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┴───────────╯
-//                         │ ctrl/num  │ space/nav │    ---    │   │enter/func │smart shift│     -     │
-                          &lt NUM LCTRL &lt NAV SPACE   ___           &mo FN    &smart_shft     ___
-//                         ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯
+// ╭────────────┬────────────┬────────────┬────────────┬────────────╮   ╭───────────┬────────────┬───────────────┬───────────────┬───────────────╮
+// │     q      │     w      │     f      │     p      │     b      │   │     j     │      l     │       u       │       y       │      '"       │
+      &kp Q        &kp W        &kp F        &kp P        &kp B            &kp J        &kp L         &kp U           &kp Y           &kp SQT
+// ├────────────┼────────────┼────────────┼────────────┼────────────┤   ├───────────┼────────────┼───────────────┼───────────────┼───────────────┤
+// │     a      │     r      │     s      │     t      │     g      │   │     m     │      n     │       e       │       i       │       o       │
+      &kp A        &kp R        &kp S        &kp T        &kp G            &kp M        &kp N         &kp E           &kp I           &kp O
+// ├────────────┼────────────┼────────────┼────────────┼────────────┤   ├───────────┼────────────┼───────────────┼───────────────┼───────────────┤
+// │ z control  │  x shift   │   c gui    │   d alt    │     v      │   │     k     │     h      │    ,; gui     │   .: shift    │  ?! control   │
+    &hml LCTRL Z &hml LSHFT X &hml LGUI C  &hml LALT D    &kp V            &kp K     &hmr RALT H  &hmr_cm RGUI 0  &hmr_dt RSHFT 0 &hmr_qx RCTRL 0
+// ╰────────────┴────────────┼────────────┼────────────┼────────────┤   ├───────────┼────────────┼───────────────┼───────────────┴───────────────╯
+//                           │ ctrl/num   │ space/nav  │    sys     │   │   func    │ smart shift│      tab      │
+                             &lt NUM LCTRL &lt NAV SPACE &mo SYS           &mo FN     &smart_shft     &kp TAB
+//                           ╰────────────┴────────────┴────────────╯   ╰───────────┴────────────┴───────────────╯
 )
 
 ZMK_LAYER(nav,
 // ╭───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────╮
-// │     -     │     -     │     -     │     -     │     -     │   │  page up  │ backspace │ up/d-home │   delete  │     -     │
-        ___         ___         ___         ___         ___          &kp PG_UP   NAV_BSPC     NAV_UP      NAV_DEL       ___    
+// │     -     │     -     │     -     │     -     │     -     │   │  page up  │   home    │    up     │    end    │     -     │
+        ___         ___         ___         ___         ___          &kp PG_UP   &kp HOME     &kp UP      &kp END       ___    
 // ├───────────┼───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┼───────────┤
-// │     -     │     -     │     -     │     -     │     -     │   │ page down │left/l-home│down/d-end │right/l-end│   enter   │
-        ___         ___         ___         ___         ___          &kp PG_DN   &kp LEFT    NAV_DOWN    &kp RIGHT    &kp RET
-//      ___         ___         ___         ___         ___          &kp PG_DN   NAV_LEFT    NAV_DOWN    NAV_RIGHT    &kp RET
+// │     -     │     -     │     -     │     -     │     -     │   │ page down │   left    │   down    │   right   │     -     │
+        ___         ___         ___         ___         ___          &kp PG_DN   &kp LEFT    &kp DOWN    &kp RIGHT      ___
 // ├───────────┼───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┼───────────┤
-// │  control  │   shift   │    gui    │    alt    │     -     │   │     -     │  insert   │   tab     │     -     │     -     │
-     &sk LCTRL   &sk LSHFT   &sk LGUI    &sk LALT       ___             ___       &kp INS     &kp TAB       ___         ___
+// │  control  │   shift   │    gui    │    alt    │     -     │   │     -     │     -     │     -     │     -     │     -     │
+     &sk LCTRL   &sk LSHFT   &sk LGUI    &sk LALT       ___             ___         ___         ___         ___         ___
 // ╰───────────┴───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┴───────────╯
 //                         │     -     │     -     │     -     │   │     -     │     -     │     -     │
                                 ___         ___         ___             ___         ___         ___
@@ -259,8 +204,8 @@ ZMK_LAYER(num,
 
 ZMK_LAYER(sys,
 // ╭───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────╮
-// │     -     │     -     │     -     │     -     │     -     │   │     -     │     -     │     -     │     -     │     -     │
-        ___         ___         ___         ___         ___             ___         ___         ___         ___         ___
+// │     -     │     -     │     -     │     -     │     -     │   │ screenshot│    mute   │  vol down │  vol up   │     -     │
+        ___         ___         ___         ___         ___          &kp PSCRN  &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP    ___
 // ├───────────┼───────────┼───────────┼───────────┼───────────┤   ├───────────┼───────────┼───────────┼───────────┼───────────┤
 // │     -     │     -     │     -     │     -     │     -     │   │     -     │     -     │     -     │     -     │     -     │
         ___         ___         ___         ___         ___             ___         ___         ___         ___         ___
