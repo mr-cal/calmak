@@ -1,8 +1,107 @@
 parse_config:
-  zmk_preamble: "#include <zmk-helpers/key-labels/34.h>"
+  zmk_preamble: "#include <zmk-helpers/key-labels/36.h>"
   zmk_additional_includes:
-    - "modules/helpers/include"
+    - "zmk-helpers/include"
+  zmk_keycode_map:
+    LCTRL: "CTRL"
+    LSHFT: "SHIFT"
+    LALT: "ALT"
+    LGUI: "GUI"
+    RCTRL: "CTRL"
+    RSHFT: "SHIFT"
+    RALT: "ALT"
+    RGUI: "GUI"
+    EXCLAMATION: "!"
+    EXCL: "!"
+    AT_SIGN: "@"
+    AT: "@"
+    HASH: "#"
+    POUND: "#"
+    DOLLAR: "$"
+    DLLR: "$"
+    PERCENT: "%"
+    PRCNT: "%"
+    CARET: "^"
+    AMPERSAND: "&"
+    AMPS: "&"
+    ASTERISK: "*"
+    ASTRK: "*"
+    STAR: "*"
+    LEFT_PARENTHESIS: "("
+    LPAR: "("
+    RIGHT_PARENTHESIS: ")"
+    RPAR: ")"
+    EQUAL: "="
+    PLUS: "+"
+    MINUS: "-"
+    UNDERSCORE: "_"
+    UNDER: "_"
+    SLASH: "/"
+    FSLH: "/"
+    QUESTION: "?"
+    QMARK: "?"
+    BACKSLASH: "\\"
+    BSLH: "\\"
+    PIPE: "|"
+    NON_US_BACKSLASH: "\\"
+    PIPE2: "|"
+    NON_US_BSLH: "|"
+    SEMICOLON: ";"
+    SEMI: ";"
+    COLON: :"
+    SINGLE_QUOTE: "'"
+    SQT: "'"
+    APOSTROPHE: "'"
+    APOS: "'"
+    DOUBLE_QUOTES: '"'
+    DQT: '"'
+    COMMA: ","
+    LESS_THAN: "<"
+    LT: "<"
+    PERIOD: "."
+    DOT: "."
+    GREATER_THAN: ">"
+    GT: ">"
+    LEFT_BRACKET: "["
+    LBKT: "["
+    LEFT_BRACE: "{"
+    LBRC: "{"
+    RIGHT_BRACKET: "]"
+    RBKT: "]"
+    RIGHT_BRACE: "}"
+    RBRC: "}"
+    GRAVE: "`"
+    TILDE: "~"
+    NON_US_HASH: "#"
+    NUHS: "#"
+    TILDE2: "~"
 
 draw_config:
-  footer_text: "urob/zmk-config"
-  dark_mode: auto
+  dark_mode: true
+  combo_w: 18
+  combo_h: 18
+  draw_key_sides: true
+  svg_extra_style: |
+    svg.keymap {
+      font-family: Ubuntu Mono, Inconsolata, Consolas, Liberation Mono, Menlo, monospace;
+      font-size: 12px;
+      font-weight: bold;
+      text-rendering: optimizeLegibility;
+      background: #665c54;
+      fill: #d4be98;
+    }
+    text.combo {
+      font-size: 9px;
+    }
+    text.label, text.footer {
+      font-size: 16px;
+    }
+    rect.key {
+      fill: #3c3836
+    }
+    rect.combo {
+      fill: #3d4220
+    }
+    rect.held{
+      fill: #543937
+    }
