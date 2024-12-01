@@ -54,7 +54,7 @@
     )
 
 // tap: qmark | shift + tap: excl
-SIMPLE_MORPH(qexcl, SFT, &kp QMARK, &kp EXCL)
+SIMPLE_MORPH(qx_morph, SFT, &kp QMARK, &kp EXCL)
 
 // tap: comma | shift + tap: semicolon
 SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &kp SEMICOLON)
@@ -114,7 +114,7 @@ MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
 MAKE_HRM(hmr_cm, &kp, &comma_morph, KEYS_L THUMBS)  // right hand - comma         + semicolon
 MAKE_HRM(hmr_dt, &kp, &dot_morph, KEYS_L THUMBS)    // right hand - period        + colon
-MAKE_HRM(hmr_qx, &kp, &dot_morph, KEYS_L THUMBS)    // right hand - question mark + exclamation point
+MAKE_HRM(hmr_qx, &kp, &qx_morph, KEYS_L THUMBS)     // right hand - question mark + exclamation point
 
 // HRM combo hack - workaround for lack of tap-only combos (ZMK issue #544)
 #define ZMK_COMBO_8(NAME, TAP, KEYPOS, LAYERS, COMBO_TERM, COMBO_IDLE, HOLD, SIDE) \
