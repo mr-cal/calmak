@@ -16,7 +16,7 @@ The only deviation when assembling is the PCB is that I mounted the JST battery 
 
 ## case
 
-<img src="draw/chocofi-2.jpg" width="500">
+<img src="draw/chocofi-2.jpg" width="50%" align="middle">
 
 I made a few tweaks to the pashutk's case:
 
@@ -28,9 +28,10 @@ The Solidworks and STL files for the case are in this repo and also on [Thingive
 
 ## batteries
 
-<img src="draw/chocofi-3.jpg" width="500">
-
-<img src="draw/chocofi-4.jpg" width="500">
+<p float="left">
+  <img src="draw/chocofi-3.jpg" width=49%">
+  <img src="draw/chocofi-4.jpg" width=49%">
+</p>
 
 I made the case so it has enough space to fit 2 x 820 mAh batteries in each side. 
 I bought this [4 pack of batteries](https://www.amazon.com/dp/B08HJ53Q3C) with dimensions of 30.5mm x 44mm x 6.8mm. 
