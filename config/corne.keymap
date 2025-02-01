@@ -13,8 +13,8 @@
 
 #define DEF 0
 #define NAV 1
-#define FN 2
-#define NUM 3
+#define NUM 2
+#define FN 3
 #define SYS 4
 
 #define XXX &none
