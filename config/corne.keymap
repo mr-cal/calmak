@@ -106,7 +106,7 @@ SIMPLE_MORPH(hypn_und, SFT, &kp MINUS, &kp UNDER)
         flavor = "balanced"; \
         tapping-term-ms = <280>; \
         quick-tap-ms = <QUICK_TAP_MS>; \
-        require-prior-idle-ms = <400>; \
+        require-prior-idle-ms = <200>; \
         bindings = <HOLD>, <TAP>; \
         hold-trigger-key-positions = <TRIGGER_POS>; \
         hold-trigger-on-release; \
