@@ -161,7 +161,7 @@ ZMK_LAYER(base,
     &hml LCTRL Z &hml LSHFT X &hml LGUI C  &hml LALT D    &kp V            &kp K     &hmr RALT H  &hmr_cm RGUI 0  &hmr_dt RSHFT 0 &hmr_qx RCTRL 0
 // ╰────────────┴────────────┼────────────┼────────────┼────────────┤   ├───────────┼────────────┼───────────────┼───────────────┴───────────────╯
 //                           │    num     │ space/nav  │    sys     │   │   func    │ smart shift│      tab      │
-                               SMART_NUM   &lt NAV SPACE  &mo SYS          &mo FN     &smart_shft     &kp TAB
+                               SMART_NUM &lt NAV SPACE &lt SYS K_CANCEL    &mo FN     &smart_shft     &kp TAB
 //                           ╰────────────┴────────────┴────────────╯   ╰───────────┴────────────┴───────────────╯
 )
 
