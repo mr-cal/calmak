@@ -1,39 +1,39 @@
-layout: {qmk_keyboard: corne_rotated, layout_name: LAYOUT_split_3x5_3}
+layout: {zmk_keyboard: corne}
 layers:
   base:
   - Q
   - W
-  - F
-  - P
-  - B
-  - J
-  - L
-  - U
-  - Y
-  - ''''
-  - A
-  - R
-  - S
-  - T
-  - G
-  - M
-  - N
   - E
+  - R
+  - T
+  - Y
+  - U
   - I
   - O
+  - P
+  - A
+  - S
+  - D
+  - F
+  - G
+  - H
+  - J
+  - K
+  - L
+  - {t: ., s: ':"'}
   - {t: Z, h: CTRL}
   - {t: X, h: SHIFT}
   - {t: C, h: GUI}
-  - {t: D, h: ALT}
-  - V
-  - K
-  - {t: H, h: ALT}
+  - {t: V, h: ALT}
+  - B
+  - N
+  - {t: M, h: ALT}
   - {t: ',', h: GUI, s: ;}
-  - {t: ., h: SHIFT, s: ':"'}
+  - {t: '''', h: SHIFT}
   - {t: '?', h: CTRL, s: '!'}
-  - {t: CTRL, h: num}
+  - {t: '&num_word 2', h: num}
   - {t: SPACE, h: nav}
-  - sys
+  - {t: CANCEL, h: sys}
   - fn
   - {t: SHIFT, h: sticky, s: '&caps_word'}
   - TAB
@@ -70,6 +70,43 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  num:
+  - {t: ▽, type: trans}
+  - '7'
+  - '8'
+  - '9'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '4'
+  - '5'
+  - '6'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '0'
+  - '1'
+  - '2'
+  - '3'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: H, h: ALT}
+  - {t: ',', h: GUI, s: ;}
+  - {t: ., h: SHIFT, s: ':"'}
+  - {t: '?', h: CTRL, s: '!'}
+  - {type: held}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -111,43 +148,6 @@ layers:
   - {type: held}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  num:
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - '7'
-  - '8'
-  - '9'
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - '4'
-  - '5'
-  - '6'
-  - {t: ▽, type: trans}
-  - {t: CTRL, h: sticky}
-  - {t: SHIFT, h: sticky}
-  - {t: GUI, h: sticky}
-  - {t: ALT, h: sticky}
-  - {t: ▽, type: trans}
-  - '0'
-  - '1'
-  - '2'
-  - '3'
-  - {t: ▽, type: trans}
-  - {type: held}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
   sys:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -160,6 +160,8 @@ layers:
   - VOL UP
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  - {t: BT, h: '3'}
+  - {t: BT, h: '4'}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -167,12 +169,10 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - BT CLR
+  - {t: BT, h: '0'}
+  - {t: BT, h: '1'}
+  - {t: BT, h: '2'}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -187,13 +187,13 @@ layers:
   - {t: ▽, type: trans}
 combos:
 - p: [3, 2]
-  k: BSPC
-  l: [base, nav, num]
-- p: [2, 1]
   k: DEL
   l: [base, nav, num]
+- p: [2, 1]
+  k: BSPC
+  l: [base, nav, num]
 - p: [3, 4]
-  k: Ctl+ Z
+  k: Ctl+Z
   l: [base, nav, num]
 - p: [11, 12]
   k: ESC
@@ -202,16 +202,16 @@ combos:
   k: RETURN
   l: [base, nav, num]
 - p: [13, 14]
-  k: Ctl+ Y
+  k: Ctl+Y
   l: [base, nav, num]
 - p: [21, 23]
-  k: Ctl+ X
+  k: Ctl+X
   l: [base, nav, num]
 - p: [21, 22]
-  k: Ctl+ INS
+  k: Ctl+C
   l: [base, nav, num]
 - p: [22, 23]
-  k: Sft+ INS
+  k: Ctl+V
   l: [base, nav, num]
 - p: [6, 7]
   k: BSPC
